@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-RewardApplication<CustomerReward>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.reward.demo.RewardApplication",
+            "projectName": "CustomerReward",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
