@@ -7,8 +7,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Setter
+@Getter
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,65 +21,19 @@ public class Transaction {
     private double amount;
     private LocalDate date;
 
-
-    
-
-    // Getters and Setters
-
-    /**
-     * @return Long return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
+    public Transaction(double amount, String customerId, LocalDate date, Long id) {
+        this.amount = amount;
+        this.customerId = customerId;
+        this.date = date;
         this.id = id;
     }
 
-    /**
-     * @return String return the customerId
-     */
-    public String getCustomerId() {
-        return customerId;
+    public Transaction() {
     }
+    
 
-    /**
-     * @param customerId the customerId to set
-     */
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
+    
 
-    /**
-     * @return double return the amount
-     */
-    public double getAmount() {
-        return amount;
-    }
-
-    /**
-     * @param amount the amount to set
-     */
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    /**
-     * @return LocalDate return the date
-     */
-    public LocalDate getDate() {
-        return date;
-    }
-
-    /**
-     * @param date the date to set
-     */
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
+    
 
 }
