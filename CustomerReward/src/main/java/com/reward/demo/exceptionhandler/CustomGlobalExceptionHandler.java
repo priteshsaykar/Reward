@@ -12,13 +12,13 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
     @ExceptionHandler(MandatoryFieldException.class)
     public final ResponseEntity<Object> handleMandatoryExceptions(MandatoryFieldException ex, WebRequest request) {
-        // Handle exception
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.OK);
+        // Handle MandatoryFieldException
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
-        // Handle exception
+        // Handle other exceptions
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
