@@ -20,7 +20,7 @@ public class RewardsController {
     private RewardsService rewardsService;
 
     @GetMapping("/monthly/{customerId}")
-    public double getMonthlyPoints(@PathVariable String customerId, @RequestParam int month, @RequestParam int year) throws MandatoryFieldException {
+    public int getMonthlyPoints(@PathVariable String customerId, @RequestParam int month, @RequestParam int year) throws MandatoryFieldException {
         Optional.ofNullable(month)
                 .filter(m -> m != 0)
                 .orElseThrow(() -> new MandatoryFieldException("Month is mandatory"));
@@ -33,7 +33,7 @@ public class RewardsController {
     }
 
     @GetMapping("/total/{customerId}")
-    public double getTotalPoints(@PathVariable String customerId) {
+    public int getTotalPoints(@PathVariable String customerId) {
 
         return rewardsService.getTotalPoints(customerId);
 

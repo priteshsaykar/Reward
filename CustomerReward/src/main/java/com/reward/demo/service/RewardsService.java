@@ -14,27 +14,37 @@ public class RewardsService {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    public double calculatePoints(double amount) {
-        double points = 0;
+    public int calculatePoints(double amount) {
+        int points = 0;
         if (amount > 100) {
-            points += (amount - 100) * 2;
+            points += (int) ((amount - 100) * 2);
             amount = 100;
         }
         if (amount > 50) {
-            points += (amount - 50);
+            points += (int) (amount - 50);
         }
         return points;
     }
 
-    public double getMonthlyPoints(String customerId, int month, int year) {
+    public int getMonthlyPoints(String customerId, int month, int year) {
         LocalDate startDate = LocalDate.of(year, month, 1);
         LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
         List<Transaction> transactions = transactionRepository.findByCustomerIdAndDateBetween(customerId, startDate, endDate);
-        return transactions.stream().mapToDouble(t -> calculatePoints(t.getAmount())).sum();
+        int totalPoints = 0;
+        for (Transaction transaction : transactions) {
+            totalPoints += calculatePoints(transaction.getAmount());
+        }
+        return totalPoints;
     }
 
-    public double getTotalPoints(String customerId) {
-        List<Transaction> transactions = transactionRepository.findByCustomerIdAndDateBetween(customerId, LocalDate.now().minusMonths(3), LocalDate.now());
-        return transactions.stream().mapToDouble(t -> calculatePoints(t.getAmount())).sum();
+    public int getTotalPoints(String customerId) {
+        LocalDate startDate = LocalDate.now().minusMonths(3);
+        LocalDate endDate = LocalDate.now();
+        List<Transaction> transactions = transactionRepository.findByCustomerIdAndDateBetween(customerId, startDate, endDate);
+        int totalPoints = 0;
+        for (Transaction transaction : transactions) {
+            totalPoints += calculatePoints(transaction.getAmount());
+        }
+        return totalPoints;
     }
 }

@@ -37,7 +37,7 @@ public class RewardsControllerTest {
         String customerId = "123";
         int month = 1;
         int year = 2022;
-        double expectedPoints = 100;
+        int expectedPoints = 100;
 
         Mockito.when(rewardsService.getMonthlyPoints(customerId, month, year)).thenReturn(expectedPoints);
 
@@ -51,7 +51,7 @@ public class RewardsControllerTest {
     @Test
     public void testGetTotalPoints() throws Exception {
         String customerId = "123";
-        double expectedPoints = 500;
+        int expectedPoints = 500;
 
         Mockito.when(rewardsService.getTotalPoints(customerId)).thenReturn(expectedPoints);
 
