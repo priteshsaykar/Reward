@@ -1,6 +1,5 @@
 package com.reward.demo.controller;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -39,7 +38,7 @@ public class RewardsControllerTest {
         int month = 1;
         int year = 2022;
         double expectedPoints = 100;
-      
+
         Mockito.when(rewardsService.getMonthlyPoints(customerId, month, year)).thenReturn(expectedPoints);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/custRewards/monthly/{customerId}", customerId)

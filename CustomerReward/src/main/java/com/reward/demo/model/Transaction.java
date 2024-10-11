@@ -1,6 +1,5 @@
 package com.reward.demo.model;
 
-
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
@@ -14,6 +13,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Transaction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,10 +30,5 @@ public class Transaction {
 
     public Transaction() {
     }
-    
-
-    
-
-    
 
 }

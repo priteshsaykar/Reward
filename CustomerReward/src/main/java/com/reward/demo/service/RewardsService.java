@@ -1,7 +1,5 @@
 package com.reward.demo.service;
 
-
-
 import com.reward.demo.model.Transaction;
 import com.reward.demo.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +38,3 @@ public class RewardsService {
         return transactions.stream().mapToDouble(t -> calculatePoints(t.getAmount())).sum();
     }
 }
-
